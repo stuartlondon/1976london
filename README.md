@@ -1,10 +1,11 @@
 # 1976 London Theme
 
-Custom WordPress theme for [`1976.london`](https://1976.london) — a creative portfolio and development showcase built with glassmorphism UI, a modular CSS architecture, and a bespoke dashboard/menu system.
+This is my custom WordPress theme for [`1976.london`](https://1976.london) — a personal creative portfolio and development showcase. I built it from scratch (with a lot of learning along the way) to explore modern web techniques, glassmorphism design, and clean WordPress development.
 
 **Version:** 2.0.7  
 **Author:** Stuart Hunt — [1976 London](https://1976.london)  
-**Contact:** stuart@1976.london
+**Contact:** stuart@1976.london  
+**GitHub:** [stuartlondon/1976london](https://github.com/stuartlondon/1976london)
 
 ---
 
@@ -13,9 +14,9 @@ Custom WordPress theme for [`1976.london`](https://1976.london) — a creative p
 - Custom page templates for: Home, Websites, Gallery, Contact, About, Portfolio, Projects
 - Universal hamburger navigation menu (modal-based, accessible `<a>` and `<button>` elements)
 - Dashboard modal system for content management and analytics
-- Modular CSS — each page only loads the styles it needs
+- Modular CSS — each page only loads the styles it needs (keeps things fast)
 - Secure contact form with honeypot, rate limiting, nonce verification, and sanitisation
-- GitHub icon (fixed bottom-right) linking to the open-source repo
+- GitHub icon (fixed bottom-right) linking to this repo
 
 ---
 
@@ -143,5 +144,7 @@ The contact form in `functions.php` includes:
 
 ## Status
 
-🟢 **Active development** — theme cleaned, branded, and committed. Gallery images to be uploaded via Dashboard.
+🟢 **Active development** — theme cleaned up, properly branded, and committed to Git. Next step: upload gallery images via the Dashboard.
+
+Built with a lot of coffee, curiosity, and VS Code. Still learning — but enjoying every bit of it. 🚀
 
