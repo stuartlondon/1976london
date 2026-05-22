@@ -1,6 +1,6 @@
 # 1976 London Theme
 
-This is my custom WordPress theme for [`1976.london`](https://1976.london) — a personal creative portfolio and development showcase. I built it from scratch (with a lot of learning along the way) to explore modern web techniques, glassmorphism design, and clean WordPress development.
+This is my custom WordPress theme for [`1976.london`](https://1976.london) — a personal creative portfolio and development showcase. I built this site from scratch (with a lot of learning along the way) to explore modern web techniques, glassmorphism design, and clean WordPress development.
 
 **Version:** 2.0.7  
 **Author:** Stuart Hunt — [1976 London](https://1976.london)  
