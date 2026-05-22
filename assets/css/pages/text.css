@@ -1,0 +1,197 @@
+/* ==========================================================================
+   TEXT PAGE STYLES
+   Extracted from main style.css for modular architecture
+   2x2 Grid system with content cards and responsive design
+   ========================================================================== */
+
+/* ==========================================================================
+   TEXT PAGE CONTENT CONTAINER
+   Main layout and spacing for text content
+   ========================================================================== */
+
+/* Text Page Styles */
+.text-page-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px 20px 40px 20px;
+  letter-spacing: -1px;
+  font-weight: 300;
+}
+
+@media (max-width: 900px) {
+  .text-page-content {
+    padding: 20px 12px 30px 12px;
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .text-page-content {
+    padding: 10px 6px 20px 6px;
+  }
+}
+
+/* ==========================================================================
+   2X2 GRID SYSTEM
+   Responsive grid container for text cards
+   ========================================================================== */
+
+/* 2x2 Grid Container */
+.text-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin: 60px 0;
+}
+
+/* Intermediate breakpoint - 2 cards to 1 card earlier for better proportions */
+@media (max-width: 900px) {
+  .text-grid-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}
+
+/* ==========================================================================
+   TEXT CARDS SYSTEM
+   Card-based content layout with glassmorphism effects
+   ========================================================================== */
+
+/* Text Cards */
+.text-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+
+.text-card-inner {
+  padding: 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-card h3 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 25px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+}
+
+/* ==========================================================================
+   TEXT CONTENT STYLING
+   Typography and content formatting for text cards
+   ========================================================================== */
+
+/* Text Content Cards */
+.text-content p {
+  margin-bottom: 20px;
+}
+
+.text-content p:last-child {
+  margin-bottom: 0;
+}
+
+.text-content blockquote {
+  border-left: 4px solid #007cba;
+  padding-left: 20px;
+  margin: 30px 0;
+  font-style: italic;
+  color: #444;
+  font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   Mobile-first responsive breakpoints for text page
+   ========================================================================== */
+
+/* Large screens to tablet */
+@media (max-width: 1024px) {
+  .text-grid-container {
+    gap: 25px;
+  }
+
+  .text-card-inner {
+    padding: 35px;
+  }
+}
+
+/* Tablet to mobile */
+@media (max-width: 768px) {
+  .text-grid-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .text-card-inner {
+    padding: 30px;
+  }
+
+  .text-card h3 {
+    font-size: 1.8rem;
+  }
+
+  .text-content {
+    font-size: 1rem;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .text-page-content {
+    padding: 200px 15px 40px 15px;
+  }
+
+  .text-card-inner {
+    padding: 25px;
+  }
+
+  .text-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .text-page-content {
+    padding: 130px 10px 24px 10px;
+  }
+
+  .text-grid-container {
+    gap: 12px;
+    margin: 18px 0;
+  }
+
+  .text-card-inner {
+    padding: 16px;
+  }
+
+  .text-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .text-content,
+  .text-content p,
+  .text-content li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}

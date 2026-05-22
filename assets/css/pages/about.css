@@ -1,0 +1,420 @@
+/* ==========================================================================
+   ABOUT PAGE STYLES
+   Extracted from main style.css for modular architecture
+   Modern glassmorphism design with grid layout and skills showcase
+   ========================================================================== */
+
+/* ==========================================================================
+   RESPONSIVE SITE TITLE POSITIONING
+   Fix site title positioning at mobile breakpoints
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .page-template-page-about .site-title {
+    top: 20px !important;
+    left: 20px !important;
+    position: fixed !important;
+  }
+}
+
+/* ==========================================================================
+   ABOUT PAGE CONTENT CONTAINER
+   Main layout and background structure
+   ========================================================================== */
+
+.about-content {
+  padding: 200px 20px 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Page Header */
+.page-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.page-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3.5em;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #e8e8e8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none !important;
+  letter-spacing: -1px;
+}
+
+/* ==========================================================================
+   ABOUT GRID LAYOUT SYSTEM
+   Two-column grid with main content and sidebar
+   ========================================================================== */
+
+/* About Grid Layout */
+.about-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+/* Main About Content */
+.about-main {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 40px;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.about-intro h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.2em;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 20px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #e8e8e8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-intro h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6em;
+  font-weight: 500;
+  color: white;
+  margin: 30px 0 15px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #e8e8e8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-intro h2:first-child {
+  margin-top: 0;
+}
+
+.about-intro p {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1em;
+}
+
+/* ==========================================================================
+   SKILLS SECTION
+   Interactive skills grid with level indicators
+   ========================================================================== */
+
+/* Skills Section */
+.skills-section {
+  margin-top: 50px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skills-section h3 {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  margin-bottom: 25px;
+  font-size: 1.8em;
+  font-weight: 600;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.skill-item {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 25px;
+  position: relative;
+  transition: all 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.skill-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.skill-item h4 {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  margin: 0 0 12px 0;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.skill-item p {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.skill-level {
+  position: static;
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 12px;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.skill-item.beginner .skill-level {
+  background: rgba(52, 152, 219, 0.8);
+  border-color: rgba(52, 152, 219, 1);
+}
+
+.skill-item.intermediate .skill-level {
+  background: rgba(241, 196, 15, 0.8);
+  border-color: rgba(241, 196, 15, 1);
+}
+
+.skill-item.advanced .skill-level {
+  background: rgba(46, 204, 113, 0.8);
+  border-color: rgba(46, 204, 113, 1);
+}
+
+/* ==========================================================================
+   ABOUT SIDEBAR
+   Profile image, quick facts, and timeline section
+   ========================================================================== */
+
+/* About Sidebar */
+.about-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.profile-image {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.profile-image img {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 25px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.profile-image img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.quick-facts,
+.timeline-section {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 30px;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.quick-facts:hover,
+.timeline-section:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.quick-facts h3,
+.timeline-section h3 {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  margin: 0 0 20px 0;
+  font-size: 1.4em;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ffffff 0%, #e8e8e8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.quick-facts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quick-facts li {
+  margin-bottom: 12px;
+  font-size: 0.95em;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  line-height: 1.4;
+}
+
+.quick-facts li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.quick-facts strong {
+  color: white;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   TIMELINE SECTION
+   Interactive timeline with year indicators
+   ========================================================================== */
+
+/* Timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.timeline-item:last-child {
+  border-bottom: none;
+}
+
+.timeline-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 15px;
+  margin: 0 -15px;
+}
+
+.timeline-year {
+  color: white;
+  font-weight: 700;
+  min-width: 60px;
+  font-size: 0.95em;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.timeline-event {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95em;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   Mobile-first responsive breakpoints for about page
+   ========================================================================== */
+
+/* Large screens to tablet */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-content {
+    padding: 180px 15px 40px 15px;
+  }
+}
+
+/* Tablet to mobile */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2.8em;
+  }
+
+  .about-content {
+    padding: 160px 15px 40px 15px;
+  }
+
+  .about-grid {
+    gap: 30px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .about-main {
+    padding: 25px;
+  }
+
+  .page-title {
+    font-size: 2.2em;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-item {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .timeline-year {
+    min-width: auto;
+    align-self: flex-start;
+  }
+}
+
+/* ==========================================================================
+   TEXT SHADOW OVERRIDES
+   Ensure crisp white typography across all About page elements
+   ========================================================================== */
+
+/* Override text shadows for crisp white subtitles - About page specific */
+.about-intro h3,
+.about-intro h2,
+.technical-features h4,
+.feature-card h4,
+.dashboard-content h3,
+.dashboard-content h2,
+.about-content h3,
+.about-content h2 {
+  text-shadow: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* Broader override for any shadowy text in dashboard content */
+.dashboard-content * {
+  text-shadow: none !important;
+}

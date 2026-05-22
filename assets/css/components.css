@@ -1,0 +1,642 @@
+/*
+ * Component Styles - 1976 London Theme
+ * Cards, buttons, modals, and interactive components
+ * Version: 1.0.0
+ */
+
+/* ==========================================================================
+   DASHBOARD CARDS - GLASSMORPHISM DESIGN
+   ========================================================================== */
+
+.dashboard-card,
+.adjustments-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card:hover,
+.adjustments-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  background: var(--glass-hover);
+}
+
+.featured-site {
+  border-color: rgba(103, 126, 234, 0.5);
+  box-shadow: 0 8px 32px rgba(103, 126, 234, 0.2);
+}
+
+.featured-site:hover {
+  border-color: rgba(103, 126, 234, 0.8);
+  box-shadow: 0 20px 60px rgba(103, 126, 234, 0.3);
+}
+
+/* ==========================================================================
+   CARD CONTENT SECTIONS
+   ========================================================================== */
+
+.card-preview {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image,
+.site-preview-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  background-size: cover;
+  background-position: top;
+}
+
+.dashboard-card:hover .card-image,
+.dashboard-card:hover .site-preview-thumb,
+.adjustments-card:hover .card-image,
+.adjustments-card:hover .site-preview-thumb {
+  transform: scale(1.05);
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dashboard-card:hover .card-overlay,
+.adjustments-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.card-info {
+  padding: 20px;
+}
+
+.card-title {
+  color: var(--text-primary);
+  font-size: 1.3em;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.card-description {
+  color: var(--text-tertiary);
+  font-size: 0.95em;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85em;
+  margin-top: 15px;
+}
+
+.update-status {
+  color: var(--color-success);
+  font-weight: 500;
+}
+
+.update-time {
+  color: var(--text-quaternary);
+}
+
+/* ==========================================================================
+   BUTTONS & INTERACTIVE ELEMENTS
+   ========================================================================== */
+
+.card-action-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: #333;
+  font-size: 0.9em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.card-action-btn:hover {
+  background: white;
+  transform: translateY(-2px);
+  color: #333;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Control Panel Buttons */
+.control-panel {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.control-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  color: #333;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-btn:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.save-btn:hover {
+  background: var(--color-success);
+  color: white;
+}
+
+.reset-btn:hover {
+  background: var(--color-warning);
+  color: white;
+}
+
+.preview-btn:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* ==========================================================================
+   FORM CONTROLS & INPUTS
+   ========================================================================== */
+
+.color-controls,
+.animation-controls,
+.layout-controls {
+  margin: 15px 0;
+}
+
+.color-controls label,
+.animation-controls label,
+.layout-controls label {
+  display: block;
+  color: var(--text-primary);
+  font-size: 0.9em;
+  margin: 10px 0 5px 0;
+  font-weight: 500;
+}
+
+.color-controls input[type="color"],
+.animation-controls input[type="range"],
+.layout-controls input[type="range"] {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.color-controls input[type="color"] {
+  height: 40px;
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   DEMO AREAS FOR ADJUSTMENTS PAGE
+   ========================================================================== */
+
+.color-demo-area,
+.stripe-demo-area,
+.layout-demo-area {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.current-gradient {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-dark) 100%);
+}
+
+.demo-stripe {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(33, 150, 243, 0.6) 15%,
+    rgba(76, 175, 80, 0.7) 25%,
+    rgba(244, 67, 54, 0.6) 35%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(244, 67, 54, 0.6) 65%,
+    rgba(76, 175, 80, 0.7) 75%,
+    rgba(33, 150, 243, 0.6) 85%,
+    transparent 100%
+  );
+  /* animation: demoStripeMove 25s linear infinite; - DISABLED FOR PERFORMANCE */
+}
+
+@keyframes demoStripeMove {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.demo-cards {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.mini-card {
+  width: 40px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.color-overlay,
+.animation-overlay,
+.layout-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.adjustments-card:hover .color-overlay,
+.adjustments-card:hover .animation-overlay,
+.adjustments-card:hover .layout-overlay {
+  opacity: 1;
+}
+
+.preview-label {
+  color: white;
+  font-weight: 600;
+  font-size: 1.1em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   FLOATING ACTION BUTTONS
+   ========================================================================== */
+
+.floating-action-buttons {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+}
+
+.floating-btn {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  padding: 12px 20px;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.floating-btn:hover {
+  background: var(--glass-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.btn-icon {
+  font-size: 1.2em;
+}
+
+/* ==========================================================================
+   UNIVERSAL LIGHTBOX STYLES - FIX FOR WHITE DOTS ISSUE
+   ========================================================================== */
+
+/* Universal Lightbox Overlay - Hidden by default */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: none; /* Hidden by default - this fixes the white dots issue */
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+.lightbox-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* Lightbox Content Container */
+.lightbox-content {
+  position: relative;
+  width: 95vw;
+  max-width: 95vw;
+  max-height: 95vh;
+  height: auto;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 20px;
+  overflow: auto;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15), 0 10px 40px rgba(0, 0, 0, 0.1);
+  transform: scale(0.85) translateY(20px);
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.lightbox-overlay.active .lightbox-content {
+  transform: scale(1) translateY(0);
+}
+
+/* Lightbox Image */
+.lightbox-image {
+  width: 100%;
+  height: auto;
+  max-height: 60vh;
+  object-fit: contain;
+  display: block;
+  border-radius: 20px 20px 0 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Lightbox Navigation Buttons */
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10001;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.lightbox-close {
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  font-size: 22px;
+  color: #2c3e50;
+}
+
+.lightbox-close:hover {
+  background: rgba(231, 76, 60, 0.9);
+  color: white;
+  transform: scale(1.1) rotate(90deg);
+}
+
+.lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55px;
+  height: 55px;
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+.lightbox-nav:hover {
+  background: rgba(83, 52, 219, 0.5);
+  color: white;
+  transform: translateY(-50%) scale(1.15);
+}
+
+.lightbox-prev {
+  left: 25px;
+}
+
+.lightbox-next {
+  right: 25px;
+}
+
+/* Lightbox Info Section */
+.lightbox-info {
+  padding: 32px 36px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 249, 250, 0.95) 100%);
+  border-radius: 0 0 20px 20px;
+  min-height: 120px;
+}
+
+.lightbox-title {
+  font-size: 16px;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.lightbox-description {
+  color: #34495e;
+  line-height: 1.7;
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Lightbox Counter */
+.lightbox-counter {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2c3e50;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  z-index: 10001;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+/* Hide navigation when single image */
+.lightbox-overlay.single-image .lightbox-nav {
+  display: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .lightbox-content {
+    width: 98vw;
+    height: 98vh;
+  }
+  
+  .lightbox-close,
+  .lightbox-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .lightbox-info {
+    padding: 20px;
+    min-height: 100px;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE COMPONENTS
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .card-info {
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.1em;
+  }
+  
+  .card-description {
+    font-size: 0.9em;
+  }
+  
+  .control-panel {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .control-btn {
+    width: 100%;
+    max-width: 250px;
+    justify-content: center;
+  }
+  
+  .floating-action-buttons {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .floating-btn {
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 320px) {
+  .card-preview {
+    height: 165px;
+  }
+
+  .card-info {
+    padding: 10px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .card-description {
+    font-size: 0.82em;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    margin-bottom: 10px;
+  }
+
+  .card-meta {
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    font-size: 0.78em;
+    margin-top: 10px;
+  }
+}

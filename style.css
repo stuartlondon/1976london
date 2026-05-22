@@ -1,0 +1,38 @@
+/*
+Theme Name: 1976 London Theme
+Description: Modern creative showcase with modular CSS architecture (Production Ready v2.0)
+Author: 1976 London
+Version: 2.0.7
+Theme URI: https://1976.london
+Text Domain: 1976-london-theme
+
+** MODULAR CSS ARCHITECTURE **
+
+This theme uses a modern modular CSS system:
+- Core styles loaded from /assets/css/core.css
+- Layout styles from /assets/css/layout.css  
+- Components from /assets/css/components.css
+- Page-specific styles from /assets/css/pages/
+- Debug helpers from /assets/css/debug.css
+
+The old monolithic CSS has been moved to style-old-DISABLED.css
+All styling is now handled by the smart loading system in functions.php
+
+This file intentionally minimal - all styles loaded via modular system
+*/
+
+/* Import Google Fonts - Only essential imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* WordPress Required Styles - Minimal Essentials Only */
+.screen-reader-text {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+/* All other styles loaded via modular system in functions.php */

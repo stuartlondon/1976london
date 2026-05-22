@@ -1,0 +1,69 @@
+# ==============================================
+# WordPress Theme Git Ignore
+# ==============================================
+
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# WordPress specific
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/backup-db/
+wp-content/backups/
+wp-content/blogs.dir/
+wp-content/upgrade/
+
+# Log files
+*.log
+debug.log
+error_log
+
+# Temporary and backup files
+*~
+*.tmp
+*.bak
+*.swp
+*.swo
+*temp*
+
+# Node modules (if using build tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build directories
+dist/
+build/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Compiled CSS/JS (if using preprocessors)
+*.css.map
+*.js.map
+
+# ==============================================
+# KEEP THESE THEME FILES (Don't ignore)
+# ==============================================
+# All .php files
+# style.css
+# functions.php
+# All template files
+# Assets folder
+# Project documentation

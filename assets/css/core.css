@@ -1,0 +1,941 @@
+/*
+ * Core Styles - 1976 London Theme
+ * Typography, colors, base styles, and global elements
+ * Version: 1.0.0
+ */
+
+/* ==========================================================================
+   MODERN GOOGLE FONTS IMPORT - INTER + POPPINS
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========================================================================
+   GLOBAL RESET & BASE STYLES
+   ========================================================================== */
+
+/* Universal Box Sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+
+/* Body & HTML Base */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #0b1321;
+  overscroll-behavior-y: auto;
+}
+
+html {
+  position: relative;
+}
+
+/* Ensure browser/root canvas never flashes white at viewport edges */
+html {
+  background-color: #0b1321;
+}
+
+body {
+  background-color: #0b1321;
+  position: relative;
+  isolation: isolate;
+}
+
+/* Fixed underlay to prevent white edge reveal on bounce/overscroll */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background: #0b1321;
+}
+
+/* Extra root underlay helps prevent hover/scroll repaint flashes on WebKit. */
+html::before {
+  content: "";
+  position: fixed;
+  inset: -2px;
+  z-index: -4;
+  pointer-events: none;
+  background: #0b1321;
+  transform: translateZ(0);
+}
+
+#page,
+.site {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: #0b1321;
+}
+
+/* Stabilize compositing on glass/hovered UI blocks while they cross viewport edges. */
+.dashboard-section,
+.adjustments-section,
+.dashboard-card,
+.adjustments-card,
+.menu-card,
+.project-concept-card,
+.portfolio-link-card,
+.gallery-card {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Global no-motion pass for cards to avoid hover-triggered viewport flicker. */
+.dashboard-card,
+.adjustments-card,
+.portfolio-link-card,
+.project-concept-card,
+.gallery-card,
+.skill-item,
+.info-card,
+.card-action-btn,
+.portfolio-btn,
+.card-image,
+.site-preview-thumb,
+.gallery-image {
+  transition: none !important;
+  animation: none !important;
+}
+
+.dashboard-card:hover,
+.adjustments-card:hover,
+.portfolio-link-card:hover,
+.project-concept-card:hover,
+.gallery-card:hover,
+.skill-item:hover,
+.info-card:hover,
+.card-action-btn:hover,
+.portfolio-btn:hover,
+.dashboard-card:hover .card-image,
+.dashboard-card:hover .site-preview-thumb,
+.adjustments-card:hover .card-image,
+.adjustments-card:hover .site-preview-thumb,
+.gallery-card:hover .gallery-image {
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Strict anti-flicker mode: disable glass blur compositing on page cards/containers. */
+.dashboard-section,
+.adjustments-section,
+.dashboard-card,
+.adjustments-card,
+.portfolio-main,
+.portfolio-stats,
+.services-section,
+.project-concept-card,
+.gallery-card,
+.website-card-2x2,
+.portfolio-link-card,
+.testimonial-card,
+.skill-item,
+.info-card,
+.card-overlay,
+.image-overlay {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Disable hover paint shifts on cards to avoid WebKit repaint flashes. */
+.dashboard-card:hover,
+.adjustments-card:hover,
+.portfolio-link-card:hover,
+.project-concept-card:hover,
+.gallery-card:hover,
+.skill-item:hover,
+.info-card:hover {
+  box-shadow: none !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY SYSTEM
+   ========================================================================== */
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  line-height: 1.2;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+}
+
+h1 {
+  font-size: clamp(2.2em, 5vw, 3.5em);
+  font-weight: 600;
+}
+
+h2 {
+  font-size: clamp(1.8em, 4vw, 2.5em);
+  font-weight: 500;
+}
+
+h3 {
+  font-size: clamp(1.4em, 3vw, 2em);
+  font-weight: 500;
+}
+
+h4 {
+  font-size: clamp(1.2em, 2.5vw, 1.5em);
+  font-weight: 600;
+}
+
+/* Body Text */
+p {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  margin: 0 0 1em 0;
+  color: #e8e8e8;
+}
+
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   COLOR SYSTEM
+   ========================================================================== */
+
+:root {
+  /* Primary Colors */
+  --color-primary: #34d399;
+  --color-primary-hover: #22d3ee;
+  --color-secondary: #0ea5a4;
+
+  /* Background Colors */
+  --bg-primary: #0b1321;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1f2937;
+  --bg-quaternary: #27364a;
+  --bg-dark: #334155;
+
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #f0f0f0;
+  --text-tertiary: #e8e8e8;
+  --text-quaternary: #d1d5db;
+
+  /* Status Colors */
+  --color-success: #4ade80;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+
+  /* Glass Effects */
+  --glass-bg: rgba(15, 23, 42, 0.35);
+  --glass-border: rgba(148, 163, 184, 0.35);
+  --glass-hover: rgba(30, 41, 59, 0.45);
+}
+
+/* ==========================================================================
+   ACCESSIBILITY & SCREEN READER STYLES
+   ========================================================================== */
+
+/* Skip Link */
+.skip-link {
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 16px;
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  z-index: 999999;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 7px;
+}
+
+/* Screen Reader Text */
+.screen-reader-text {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   SITE TITLE COMPONENT
+   ========================================================================== */
+
+.site-title {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  z-index: 1000;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: clamp(2.5em, 6vw, 4em);
+  color: #25242a;
+  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  backdrop-filter: blur(15px);
+  padding: 15px 20px;
+  border-radius: 15px;
+  background: linear-gradient(135deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(0, 0, 0, 0.3) 100%);
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.site-title:hover {
+  background: linear-gradient(135deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(0, 0, 0, 0.4) 100%);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.site-title a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.site-title .main-title {
+  display: block;
+  font-weight: 800;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0), 0 4px 16px rgba(0, 0, 0, 0);
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+}
+
+.site-title .sub-title {
+  display: block;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  opacity: 0.9;
+  margin-top: -5px;
+}
+
+/* ==========================================================================
+   UNIVERSAL HAMBURGER MENU
+   ========================================================================== */
+
+.universal-hamburger {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+}
+
+.universal-hamburger,
+.universal-hamburger span {
+  transition: none !important;
+  animation: none !important;
+}
+
+.universal-hamburger:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.universal-hamburger span {
+  width: 22px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   ENHANCED UNIVERSAL MENU MODAL - Dashboard Style with Homepage Size
+   ========================================================================== */
+
+.universal-menu-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 10000;
+  display: none;
+  pointer-events: none;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.universal-menu-modal[style*='display:flex'],
+.universal-menu-modal[style*='display: flex'] {
+  pointer-events: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.universal-menu-content {
+  background: linear-gradient(135deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(0, 0, 0, 0.3) 100%);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 25px;
+  text-align: center;
+  max-width: 800px;
+  width: 90%;
+  max-height: 85vh;
+  margin: 20px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+  animation: slideUp 0.4s ease-out;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.universal-menu-header {
+  position: relative;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.universal-menu-header h3 {
+  color: #ffffff;
+  font-size: 1.4em;
+  margin: 0;
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.universal-close-button {
+  position: absolute;
+  top: -5px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 1.5em;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.universal-close-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.universal-menu-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+  min-width: 0;
+}
+
+.menu-section {
+  margin-bottom: 18px;
+}
+
+.menu-section:last-child {
+  margin-bottom: 0;
+}
+
+.menu-section h4 {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1em;
+  margin: 0 0 12px 0;
+  font-weight: 500;
+  text-align: left;
+  padding-left: 10px;
+  border-left: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  justify-items: stretch;
+  min-width: 0;
+}
+
+.menu-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  min-width: 0;
+  display: block; /* ensures <a> and <button> behave like block elements */
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.menu-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  color: inherit;
+}
+
+.menu-card-icon {
+  font-size: 1.8em;
+  margin-bottom: 8px;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.menu-card h5 {
+  color: #ffffff;
+  font-size: 0.95em;
+  margin: 0 0 4px 0;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.menu-card p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75em;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   RESPONSIVE TYPOGRAPHY
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .site-title {
+    top: 20px !important;
+    left: 20px !important;
+    font-size: 1.5em;
+    position: fixed !important;
+  }
+
+  .universal-hamburger {
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .universal-hamburger span {
+    width: 16px;
+  }
+
+  /* Enhanced Universal Menu Mobile Styles */
+  .universal-menu-content {
+    max-width: 95%;
+    padding: 18px;
+    margin: 15px 10px;
+    max-height: 90vh;
+    scrollbar-gutter: stable both-edges;
+  }
+
+  .universal-menu-body {
+    display: block;
+    width: 100%;
+  }
+
+  .universal-menu-header {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+  }
+
+  .universal-menu-header h3 {
+    font-size: 1.1em;
+  }
+
+  .universal-close-button {
+    width: 30px;
+    height: 30px;
+    font-size: 1.3em;
+  }
+
+  .universal-menu-body {
+    gap: 12px;
+  }
+
+  .menu-section {
+    margin-bottom: 15px;
+  }
+
+  .universal-menu-content .menu-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 0;
+    padding-right: 2px;
+    min-width: 0;
+  }
+
+  .universal-menu-content .menu-card {
+    padding: 12px 8px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .universal-menu-content .menu-card-icon {
+    font-size: 1.8em;
+    margin-bottom: 8px;
+  }
+
+  .universal-menu-content .menu-card h5 {
+    font-size: 0.9em;
+  }
+
+  .universal-menu-content .menu-card p {
+    font-size: 0.75em;
+  }
+
+  .menu-section h4 {
+    font-size: 1em;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 350px) {
+  .universal-menu-content {
+    margin: 10px 5px;
+    padding: 12px 14px 12px 12px;
+    border-radius: 14px;
+    max-height: calc(100vh - 18px);
+    overflow-x: hidden;
+  }
+
+  .universal-menu-body {
+    gap: 10px;
+  }
+
+  .universal-menu-header {
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    padding-right: 32px;
+  }
+
+  .universal-menu-header h3 {
+    font-size: 0.98em;
+    line-height: 1.2;
+  }
+
+  .universal-close-button {
+    top: -1px;
+    width: 27px;
+    height: 27px;
+    font-size: 1em;
+  }
+
+  .menu-section h4 {
+    font-size: 0.92em;
+    margin-bottom: 10px;
+  }
+
+  .universal-menu-content .menu-card {
+    padding: 9px 8px;
+    border-radius: 10px;
+  }
+
+  .universal-menu-content .menu-card-icon {
+    font-size: 1.45em;
+    margin-bottom: 6px;
+  }
+
+  .universal-menu-content .menu-card h5 {
+    font-size: 0.9em;
+    line-height: 1.18;
+  }
+
+  .universal-menu-content .menu-card p {
+    font-size: 0.78em;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 321px) {
+  .site-title {
+    top: 12px !important;
+    left: 10px !important;
+    font-size: 1.2em;
+    padding: 8px 10px;
+    max-width: calc(100vw - 66px);
+  }
+
+  .universal-hamburger {
+    top: 12px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .universal-hamburger span {
+    width: 14px;
+  }
+
+  .universal-menu-content {
+    margin: 7px 3px;
+    padding: 9px 12px 9px 9px;
+    border-radius: 12px;
+    max-height: calc(100vh - 14px);
+  }
+
+  .universal-menu-header {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    padding-right: 30px;
+  }
+
+  .universal-menu-header h3 {
+    font-size: 0.94em;
+    line-height: 1.18;
+    text-align: left;
+  }
+
+  .universal-close-button {
+    top: -1px;
+    width: 25px;
+    height: 25px;
+    font-size: 0.9em;
+  }
+
+  .universal-menu-content .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .menu-section {
+    margin-bottom: 10px;
+  }
+
+  .menu-section h4 {
+    font-size: 0.88em;
+    margin-bottom: 8px;
+  }
+
+  .universal-menu-content .menu-card {
+    padding: 7px 6px;
+    border-radius: 9px;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .universal-menu-content .menu-card-icon {
+    font-size: 1.3em;
+    margin-bottom: 4px;
+  }
+
+  .universal-menu-content .menu-card h5 {
+    font-size: 0.84em;
+    line-height: 1.14;
+  }
+
+  .universal-menu-content .menu-card p {
+    font-size: 0.72em;
+    line-height: 1.15;
+  }
+}
+
+@media (max-width: 300px) {
+  .universal-menu-content {
+    margin: 6px 3px;
+    padding: 8px 10px 8px 8px;
+  }
+
+  .universal-menu-header {
+    padding-right: 28px;
+  }
+
+  .universal-menu-header h3 {
+    font-size: 0.88em;
+  }
+
+  .universal-close-button {
+    width: 23px;
+    height: 23px;
+    font-size: 0.85em;
+  }
+
+  .universal-menu-content .menu-card {
+    padding: 7px 6px;
+  }
+
+  .universal-menu-content .menu-card h5 {
+    font-size: 0.8em;
+  }
+
+  .universal-menu-content .menu-card p {
+    font-size: 0.68em;
+  }
+}
+
+/* ==========================================================================
+   FOOTER POSITIONING
+   WordPress copyright in bottom-left as requested
+   ========================================================================== */
+
+.site-footer {
+  position: fixed;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  left: 20px;
+  z-index: 100;
+  background: linear-gradient(135deg,
+      rgba(3, 10, 24, 0.78) 0%,
+      rgba(18, 34, 62, 0.72) 50%,
+      rgba(3, 10, 24, 0.78) 100%);
+  backdrop-filter: blur(15px);
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 0.75em;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+.site-footer:hover {
+  background: linear-gradient(135deg,
+      rgba(4, 14, 32, 0.86) 0%,
+      rgba(25, 48, 84, 0.8) 50%,
+      rgba(4, 14, 32, 0.86) 100%);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.site-footer .site-info p {
+  margin: 0;
+  line-height: 1.3;
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    bottom: calc(15px + env(safe-area-inset-bottom, 0px));
+    left: 15px;
+    font-size: 0.7em;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .site-footer {
+    left: 10px;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    max-width: calc(100vw - 20px);
+    padding: 6px 8px;
+    font-size: 0.62em;
+  }
+}
+
+/* ==========================================================================
+   GENTLE GRADIENT BACKGROUND - TEMPORARY REPLACEMENT FOR ANIMATED STRIPES
+   ========================================================================== */
+
+.gentle-gradient-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  z-index: -1;
+  background: #0b1321;
+}
+
+/* ==========================================================================
+   1976 LONDON GRADIENT - PRIMARY PAGE BACKGROUND
+   Deep night slate into teal/emerald at 45 degrees
+   ========================================================================== */
+
+.man-of-steel-gradient {
+  position: fixed;
+  inset: -2px;
+  z-index: -1;
+  pointer-events: none;
+  background: #0b1321;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}

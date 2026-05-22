@@ -1,0 +1,427 @@
+/* ==========================================================================
+   PORTFOLIO PAGE STYLES
+   Hub page template with glassmorphism design and professional structure
+   External profile links and professional presence showcase
+   ========================================================================== */
+
+/* Stabilize viewport canvas and remove motion-driven repaints on this page. */
+html,
+body.page-template-page-portfolio,
+body.page-template-page-portfolio #page,
+body.page-template-page-portfolio .site {
+    background-color: #0b1321 !important;
+}
+
+body.page-template-page-portfolio {
+    overscroll-behavior-y: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+}
+
+/* ==========================================================================
+   RESPONSIVE SITE TITLE POSITIONING
+   Fix site title positioning at mobile breakpoints
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .page-template-page-portfolio .site-title {
+        top: 20px !important;
+        left: 20px !important;
+        position: fixed !important;
+    }
+}
+
+/* ==========================================================================
+   TEXT SHADOW OVERRIDES
+   Ensure crisp white typography across all Portfolio page elements
+   ========================================================================== */
+
+/* Override text shadows for crisp white subtitles - Portfolio page specific */
+.portfolio-intro h3,
+.portfolio-intro h2,
+.portfolio-links h4,
+.portfolio-link-card h4,
+.dashboard-content h3,
+.dashboard-content h2,
+.portfolio-content h3,
+.portfolio-content h2 {
+    text-shadow: none !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+/* Broader override for any shadowy text in dashboard content */
+.dashboard-content * {
+    text-shadow: none !important;
+}
+
+/* ==========================================================================
+   PORTFOLIO GRID LAYOUT
+   Two-column Hub page structure matching About page design
+   ========================================================================== */
+
+/* Portfolio Grid Layout - matches About page structure */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    margin-top: 40px;
+}
+
+/* Main Portfolio Content - Enhanced Specificity */
+.page-template-page-portfolio .portfolio-main,
+.dashboard-section .portfolio-main {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 25px !important;
+    padding: 40px !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    backdrop-filter: blur(15px) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Portfolio Sidebar */
+.portfolio-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.page-template-page-portfolio .portfolio-stats,
+.page-template-page-portfolio .services-section,
+.dashboard-section .portfolio-stats,
+.dashboard-section .services-section {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 25px !important;
+    padding: 30px !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    backdrop-filter: blur(15px) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* ==========================================================================
+   PORTFOLIO LINK CARDS
+   External platform showcase with interactive design
+   ========================================================================== */
+
+/* Portfolio Link Cards */
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.portfolio-link-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.portfolio-link-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.link-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 8px;
+}
+
+.link-type {
+    display: inline-flex;
+    align-self: flex-start;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.testimonials-section {
+    margin-top: 28px;
+    padding-top: 6px;
+}
+
+.testimonials-section h3 {
+    margin: 0 0 20px 0;
+}
+
+.portfolio-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.portfolio-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* No-motion pass for Portfolio route to eliminate hover repaint flicker. */
+body.page-template-page-portfolio .portfolio-link-card,
+body.page-template-page-portfolio .portfolio-btn,
+body.page-template-page-portfolio .site-title,
+body.page-template-page-portfolio .universal-hamburger,
+body.page-template-page-portfolio .site-footer {
+    transition: none !important;
+}
+
+body.page-template-page-portfolio .site-title:hover,
+body.page-template-page-portfolio .universal-hamburger:hover,
+body.page-template-page-portfolio .site-footer:hover,
+body.page-template-page-portfolio .portfolio-link-card:hover,
+body.page-template-page-portfolio .portfolio-btn:hover {
+    transform: none !important;
+}
+
+/* ==========================================================================
+   TESTIMONIALS SECTION
+   Client success stories and feedback showcase
+   ========================================================================== */
+
+/* Testimonials */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.testimonial-author {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.testimonial-author span {
+    display: block;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   SERVICES AND STATISTICS
+   Professional capabilities and portfolio metrics
+   ========================================================================== */
+
+/* Services */
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.service-level {
+    font-size: 0.8em;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* Portfolio Stats List */
+.portfolio-stats ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.portfolio-stats li {
+    margin-bottom: 12px;
+    font-size: 0.95em;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    line-height: 1.4;
+}
+
+.portfolio-stats li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.portfolio-stats strong {
+    color: white;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   Mobile-first responsive breakpoints for portfolio page
+   ========================================================================== */
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-grid {
+        gap: 24px;
+    }
+
+    .page-template-page-portfolio .portfolio-main,
+    .dashboard-section .portfolio-main,
+    .page-template-page-portfolio .portfolio-stats,
+    .page-template-page-portfolio .services-section,
+    .dashboard-section .portfolio-stats,
+    .dashboard-section .services-section {
+        padding: 20px !important;
+    }
+
+    .links-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+}
+
+@media (max-width: 320px) {
+    .portfolio-grid {
+        gap: 14px;
+        margin-top: 12px;
+    }
+
+    .page-template-page-portfolio .portfolio-main,
+    .dashboard-section .portfolio-main,
+    .page-template-page-portfolio .portfolio-stats,
+    .page-template-page-portfolio .services-section,
+    .dashboard-section .portfolio-stats,
+    .dashboard-section .services-section {
+        padding: 12px !important;
+        border-radius: 14px !important;
+    }
+
+    .links-grid,
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 12px;
+    }
+
+    .portfolio-link-card,
+    .testimonial-card {
+        padding: 12px;
+        border-radius: 12px;
+        min-width: 0;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .link-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .link-header h4,
+    .portfolio-link-card h4 {
+        font-size: 1rem;
+        line-height: 1.3;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .portfolio-link-card p,
+    .testimonial-card p,
+    .portfolio-stats li,
+    .service-item {
+        font-size: 0.84em;
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .link-type {
+        display: inline-flex;
+        max-width: 100%;
+        font-size: 0.62em;
+        line-height: 1.2;
+        padding: 4px 8px;
+        white-space: normal;
+    }
+
+    .portfolio-btn {
+        width: 100%;
+        text-align: center;
+        padding: 10px 12px;
+        font-size: 0.84em;
+        box-sizing: border-box;
+    }
+
+    .service-item {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .service-name,
+    .service-level {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .service-level {
+        font-size: 0.7em;
+        padding: 3px 6px;
+        white-space: normal;
+        text-align: right;
+    }
+}

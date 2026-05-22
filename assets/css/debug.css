@@ -1,0 +1,243 @@
+/*
+ * Debug Styles - 1976 London Theme
+ * Debug borders, layout helpers, and development tools
+ * Version: 1.0.0
+ */
+
+/* ==========================================================================
+   DEBUG BORDERS SYSTEM
+   ========================================================================== */
+
+/* Debug Mode Toggle - Add ?debug=layout to URL to activate */
+body.debug-layout .site-main,
+body.debug-layout #main,
+body.debug-layout #primary .site-main,
+body.debug-layout .content-area .site-main {
+  border: 3px solid #ff0000 !important; /* Red = Main container */
+  position: relative !important;
+}
+
+body.debug-layout .site-main::before,
+body.debug-layout #main::before,
+body.debug-layout #primary .site-main::before,
+body.debug-layout .content-area .site-main::before {
+  content: "SITE-MAIN (40px margins)";
+  position: absolute;
+  top: -25px;
+  left: 0;
+  background: #ff0000;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  z-index: 10000;
+}
+
+body.debug-layout .dashboard-section,
+body.debug-layout .adjustments-section {
+  border: 3px solid #0066ff !important; /* Blue = Section containers */
+  position: relative !important;
+}
+
+body.debug-layout .dashboard-section::before,
+body.debug-layout .adjustments-section::before {
+  content: "SECTION (glassmorphism)";
+  position: absolute;
+  top: -25px;
+  left: 0;
+  background: #0066ff;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  z-index: 10000;
+}
+
+body.debug-layout .dashboard-gallery-grid,
+body.debug-layout .adjustments-gallery-grid {
+  border: 3px solid #00cc00 !important; /* Green = Grid containers */
+  position: relative !important;
+}
+
+body.debug-layout .dashboard-gallery-grid::before,
+body.debug-layout .adjustments-gallery-grid::before {
+  content: "GALLERY-GRID";
+  position: absolute;
+  top: -25px;
+  left: 0;
+  background: #00cc00;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  z-index: 10000;
+}
+
+body.debug-layout .dashboard-card,
+body.debug-layout .adjustments-card {
+  border: 2px solid #ff9900 !important; /* Orange = Individual cards */
+  position: relative !important;
+}
+
+body.debug-layout .dashboard-card::before,
+body.debug-layout .adjustments-card::before {
+  content: "CARD";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  background: #ff9900;
+  color: white;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 3px;
+  z-index: 10000;
+}
+
+/* ==========================================================================
+   DEBUG CONTROLS
+   ========================================================================== */
+
+.debug-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10001;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  padding: 15px;
+  display: none; /* Hidden by default */
+}
+
+body.debug-layout .debug-controls {
+  display: block;
+}
+
+.debug-controls h4 {
+  color: white;
+  margin: 0 0 10px 0;
+  font-size: 14px;
+}
+
+.debug-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.debug-toggle label {
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.debug-toggle input[type="checkbox"] {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   DEBUG INFO OVERLAY
+   ========================================================================== */
+
+.debug-info {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: monospace;
+  font-size: 12px;
+  max-width: 300px;
+  z-index: 10000;
+  display: none;
+}
+
+body.debug-layout .debug-info {
+  display: block;
+}
+
+.debug-info h4 {
+  margin: 0 0 15px 0;
+  color: #4facfe;
+}
+
+.debug-info .debug-item {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #333;
+}
+
+.debug-info .debug-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.debug-info .debug-label {
+  color: #999;
+  font-weight: bold;
+}
+
+.debug-info .debug-value {
+  color: white;
+  margin-left: 10px;
+}
+
+/* ==========================================================================
+   LAYOUT MEASUREMENT HELPERS
+   ========================================================================== */
+
+body.debug-layout {
+  position: relative;
+}
+
+/* Show 40px margin guides */
+body.debug-layout::before,
+body.debug-layout::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  background: rgba(255, 0, 0, 0.1);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+body.debug-layout::before {
+  left: 0;
+}
+
+body.debug-layout::after {
+  right: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE DEBUG
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .debug-controls {
+    bottom: 10px;
+    left: 10px;
+    padding: 10px;
+  }
+  
+  .debug-info {
+    right: 10px;
+    max-width: 250px;
+    padding: 15px;
+  }
+  
+  body.debug-layout::before,
+  body.debug-layout::after {
+    width: 20px;
+  }
+}
