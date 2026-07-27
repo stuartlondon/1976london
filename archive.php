@@ -30,8 +30,16 @@ get_header(); ?>
 		 the_posts_navigation();
 
 		else :
-
-			get_template_part( 'template-parts/content', 'none' );
+			?>
+			<article class="no-results not-found">
+				<header class="entry-header">
+					<h1 class="entry-title"><?php esc_html_e( 'Nothing Found', '1976-london-theme' ); ?></h1>
+				</header>
+				<div class="entry-content">
+					<p><?php esc_html_e( 'No posts matched this archive.', '1976-london-theme' ); ?></p>
+				</div>
+			</article>
+			<?php
 
 		endif;
 		?>

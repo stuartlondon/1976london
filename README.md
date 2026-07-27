@@ -1,6 +1,6 @@
 # 1976 London Theme
 
-This is my custom WordPress theme for [`1976.london`](https://1976.london) — a personal creative portfolio and development showcase. I built it from scratch (with a lot of learning along the way) to explore modern web techniques, glassmorphism design, and clean WordPress development.
+This is my custom WordPress theme for [`1976.london`](https://1976.london) — a lightweight service-led site for advertising custom WordPress websites, template-based websites, small business websites, creative portfolio websites, and general web design services.
 
 **Version:** 2.0.7  
 **Author:** Stuart Hunt — [1976 London](https://1976.london)  
@@ -11,12 +11,11 @@ This is my custom WordPress theme for [`1976.london`](https://1976.london) — a
 
 ## What This Theme Does
 
-- Custom page templates for: Home, Websites, Gallery, Contact, About, Portfolio, Projects
-- Universal hamburger navigation menu (modal-based, accessible `<a>` and `<button>` elements)
-- Dashboard modal system for content management and analytics
-- Modular CSS — each page only loads the styles it needs (keeps things fast)
+- Custom page templates for: Home, Websites, Gallery, Contact, About, Portfolio
+- Universal hamburger navigation menu built with accessible `<a>` and `<button>` elements
+- Modular CSS so each page only loads the styles it needs
 - Secure contact form with honeypot, rate limiting, nonce verification, and sanitisation
-- GitHub icon (fixed bottom-right) linking to this repo
+- Footer GitHub link to this repo
 
 ---
 
@@ -27,9 +26,8 @@ This is my custom WordPress theme for [`1976.london`](https://1976.london) — a
 ├── assets/
 │   ├── css/
 │   │   ├── core.css          # Typography, globals, universal menu, base UI
-│   │   ├── layout.css        # Spacing, containers, breakpoints, dashboard layout
+│   │   ├── layout.css        # Spacing, containers, responsive breakpoints
 │   │   ├── components.css    # Reusable cards, buttons, controls
-│   │   ├── dashboard-modal.css
 │   │   ├── debug.css         # Layout debug helpers (load with ?debug=layout)
 │   │   └── pages/            # Page-specific styles (loaded only on relevant page)
 │   │       ├── homepage.css
@@ -37,12 +35,10 @@ This is my custom WordPress theme for [`1976.london`](https://1976.london) — a
 │   │       ├── gallery.css
 │   │       ├── contact.css
 │   │       ├── portfolio.css
-│   │       ├── projects.css
 │   │       ├── about.css
 │   │       └── text.css
 │   └── js/
-│       ├── scripts.js         # Universal menu, scroll handling, keyboard nav
-│       └── dashboard-modal.js # Dashboard modal system
+│       └── scripts.js         # Universal menu, scroll handling, keyboard nav
 ├── template-parts/
 │   ├── enhanced-universal-menu.php   # Shared navigation modal
 │   └── content.php                   # Default post content template
@@ -50,7 +46,6 @@ This is my custom WordPress theme for [`1976.london`](https://1976.london) — a
 ├── page-contact.php
 ├── page-gallery.php
 ├── page-portfolio.php
-├── page-projects.php
 ├── page-websites.php
 ├── front-page.php     # Homepage
 ├── 404.php            # Styled 404 — matches site design
@@ -70,7 +65,7 @@ Styles are loaded via `functions.php` using `wp_enqueue_style()` with smart cond
 
 - **`core.css`** — Always loaded. Typography, colours, universal menu, footer, base UI elements.
 - **`layout.css`** — Always loaded. Grid systems, containers, responsive breakpoints.
-- **`components.css`** — Always loaded. Cards, modals, buttons, shared patterns.
+- **`components.css`** — Always loaded. Cards, buttons, shared patterns.
 - **`pages/*.css`** — Loaded only on the matching page (e.g. `gallery.css` only on `/gallery`).
 
 Cache-busting is handled by the version string in `creative_theme_scripts()` in `functions.php`. When CSS/JS changes don't appear, bump the version number and hard-refresh.
@@ -79,33 +74,33 @@ Cache-busting is handled by the version string in `creative_theme_scripts()` in 
 
 ## Key PHP Functions
 
-| Function | Purpose |
-|----------|---------|
-| `theme_1976_setup()` | Theme support, menu registration, custom logo |
-| `creative_theme_scripts()` | Enqueue all CSS and JS with smart page-detection |
-| `theme_1976_clean_styles()` | Dequeue unwanted WordPress default styles |
-| `create_weekly_updates_post_type()` | Registers the Weekly Updates custom post type |
-| Contact form handler (anonymous, hooked to `init`) | Processes form, validates, sends email |
+| Function                                           | Purpose                                          |
+| -------------------------------------------------- | ------------------------------------------------ |
+| `theme_1976_setup()`                               | Theme support, menu registration, custom logo    |
+| `creative_theme_scripts()`                         | Enqueue all CSS and JS with smart page-detection |
+| `theme_1976_clean_styles()`                        | Dequeue unwanted WordPress default styles        |
+| `create_weekly_updates_post_type()`                | Registers the Weekly Updates custom post type    |
+| Contact form handler (anonymous, hooked to `init`) | Processes form, validates, sends email           |
 
 ---
 
 ## Responsive QA Breakpoints
 
-| Width | Notes |
-|-------|-------|
-| 320px | Baseline smallest phone |
-| 375px | iPhone SE / common small phone |
+| Width       | Notes                                 |
+| ----------- | ------------------------------------- |
+| 320px       | Baseline smallest phone               |
+| 375px       | iPhone SE / common small phone        |
 | 481px–560px | Mid-mobile — modal and card behaviour |
-| 768px | Tablet portrait |
-| 1024px | Tablet landscape / small desktop |
+| 768px       | Tablet portrait                       |
+| 1024px      | Tablet landscape / small desktop      |
 
 ---
 
 ## Local Development
 
-This theme runs inside a WordPress installation. Typical workflow with [LocalWP](https://localwp.com/):
+This theme runs inside a WordPress installation. Typical workflow with [LocalWP](https://localwp.com/) or the local stack on the beelink server is:
 
-1. Start your local WordPress site in LocalWP.
+1. Start or park the site in the local stack so it generates a `.test` domain from the project folder under `/home/stuart/sites/1976-london/wp-content/themes/`.
 2. Ensure `1976-london-theme` is the active theme in WordPress Admin → Appearance → Themes.
 3. Edit files in this directory.
 4. Hard refresh browser (`Cmd+Shift+R` on Mac) after CSS/JS changes.
@@ -133,6 +128,7 @@ Make a commit whenever you finish a meaningful change — before testing on prod
 ## Contact Form Security
 
 The contact form in `functions.php` includes:
+
 - **Nonce verification** — prevents forged form submissions
 - **Honeypot field** — catches bots that fill in all fields
 - **Rate limiting** — 1 submission per minute per IP (via WordPress transients)
@@ -144,7 +140,6 @@ The contact form in `functions.php` includes:
 
 ## Status
 
-🟢 **Active development** — theme cleaned up, properly branded, and committed to Git. Next step: upload gallery images via the Dashboard.
+🟢 **Active development** — theme is being simplified into a lighter service-focused site. Next step: refine content hierarchy and reduce remaining visual weight.
 
 Built with a lot of coffee, curiosity, and VS Code. Still learning — but enjoying every bit of it. 🚀
-

@@ -357,7 +357,7 @@ add_action('admin_init', 'add_weekly_updates_capabilities');
 function creative_theme_scripts()
 {
     // Version for cache busting
-    $version = '2.0.7'; // Cache bust - v9: fix website card info clipping
+    $version = '2.1.0'; // Cache bust - phase 2 flagship 3-page foundation
 
     // Core styles (typography, colors, global elements)
     wp_enqueue_style(
@@ -433,16 +433,6 @@ function creative_theme_scripts()
         );
     }
 
-    // Projects page styles
-    if (is_page('projects') || is_page_template('page-projects.php')) {
-        wp_enqueue_style(
-            '1976london-projects',
-            get_template_directory_uri() . '/assets/css/pages/projects.css',
-            array('1976london-components'),
-            $version
-        );
-    }
-
     // Text page styles
     if (is_page('text') || is_page_template('page-text.php')) {
         wp_enqueue_style(
@@ -458,6 +448,16 @@ function creative_theme_scripts()
         wp_enqueue_style(
             '1976london-about',
             get_template_directory_uri() . '/assets/css/pages/about.css',
+            array('1976london-components'),
+            $version
+        );
+    }
+
+    // Offers page styles
+    if (is_page('offers') || is_page_template('page-offers.php')) {
+        wp_enqueue_style(
+            '1976london-offers',
+            get_template_directory_uri() . '/assets/css/pages/offers.css',
             array('1976london-components'),
             $version
         );
@@ -482,83 +482,8 @@ function creative_theme_scripts()
     // Keep the existing JavaScript
     wp_enqueue_script('1976london-creative-scripts', get_template_directory_uri() . '/assets/js/scripts.js', array(), $version, true);
 
-    // Dashboard Modal System - Global Assets
-    wp_enqueue_style(
-        '1976london-dashboard-modal',
-        get_template_directory_uri() . '/assets/css/dashboard-modal.css',
-        array('1976london-components'),
-        $version
-    );
-
-    wp_enqueue_script(
-        '1976london-dashboard-modal-js',
-        get_template_directory_uri() . '/assets/js/dashboard-modal.js',
-        array(),
-        $version,
-        true
-    );
-
-    // Localize script with nonce and AJAX URL
-    wp_localize_script('1976london-dashboard-modal-js', 'dashboardAjax', array(
-        'ajaxurl' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('gallery_upload_nonce'),
-        'gallery_nonce' => wp_create_nonce('gallery_upload_nonce'),
-        'dashboard_nonce' => wp_create_nonce('dashboard_analytics_nonce'),
-        'themeUrl' => get_template_directory_uri()
-    ));
 }
 add_action('wp_enqueue_scripts', 'creative_theme_scripts');
-
-// Step 1: Basic Analytics AJAX Handler - Simple Version
-add_action('wp_ajax_get_dashboard_analytics', 'handle_simple_analytics');
-add_action('wp_ajax_nopriv_get_dashboard_analytics', 'handle_simple_analytics');
-
-function handle_simple_analytics()
-{
-    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'dashboard_analytics_nonce')) {
-        wp_send_json_error('Security check failed');
-        return;
-    }
-
-    // Step 2: Real WordPress data - keeping it simple
-    $posts_count = wp_count_posts('post');
-    $pages_count = wp_count_posts('page');
-    $media_count = wp_count_posts('attachment');
-    $comments_count = wp_count_comments();
-
-    $data = array(
-        'posts' => $posts_count->publish,
-        'pages' => $pages_count->publish,
-        'media' => $media_count->inherit,
-        'comments' => $comments_count->approved
-    );
-
-    wp_send_json_success($data);
-}
-
-// Step 3: Simple Data Extraction Handler
-add_action('wp_ajax_extract_live_media', 'handle_simple_extraction');
-add_action('wp_ajax_nopriv_extract_live_media', 'handle_simple_extraction');
-
-function handle_simple_extraction()
-{
-    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'dashboard_analytics_nonce')) {
-        wp_send_json_error('Security check failed');
-        return;
-    }
-
-    $url = isset($_POST['url']) ? esc_url_raw(wp_unslash($_POST['url'])) : '';
-
-    if (empty($url)) {
-        wp_send_json_error('URL required');
-        return;
-    }
-
-    // Disable placeholder output until extraction logic is finalized.
-    wp_send_json_error('Live media extraction is temporarily unavailable while this feature is being finalized.');
-}
-
-
 
 function theme_1976_clean_styles()
 {
@@ -568,318 +493,6 @@ function theme_1976_clean_styles()
     wp_dequeue_style('wp-block-library-theme');
 }
 add_action('wp_enqueue_scripts', 'theme_1976_clean_styles', 1);
-
-// Custom menu fallback for 1976 London (Updated with Gallery page)
-function creative_lab_fallback_menu()
-{
-    echo '<nav class="home-menu"><ul>';
-
-    // Websites Page - Primary focus for launch
-    $websites_page = get_page_by_path('websites');
-    if ($websites_page) {
-        echo '<li><a href="' . get_permalink($websites_page->ID) . '">🌐 Websites</a></li>';
-    }
-
-    // Gallery Page - Creative showcase
-    $gallery_page = get_page_by_path('gallery');
-    if ($gallery_page) {
-        echo '<li><a href="' . get_permalink($gallery_page->ID) . '">🎨 Gallery</a></li>';
-    }
-
-    // About Page - Your story and journey
-    $about_page = get_page_by_path('about');
-    if ($about_page) {
-        echo '<li><a href="' . get_permalink($about_page->ID) . '">👤 About</a></li>';
-    }
-
-    // Contact Page - Essential for business
-    $contact_page = get_page_by_path('contact');
-    if ($contact_page) {
-        echo '<li><a href="' . get_permalink($contact_page->ID) . '">Contact</a></li>';
-    }
-
-    echo '</ul></nav>';
-}
-
-// Custom side menu fallback for other pages (Updated with Gallery page)
-function creative_lab_side_fallback_menu()
-{
-    echo '<ul class="side-menu">';
-
-    // Websites Page - Interactive gallery showcase
-    $websites_page = get_page_by_path('websites');
-    if ($websites_page) {
-        echo '<li><a href="' . get_permalink($websites_page->ID) . '">🌐 Websites</a></li>';
-    }
-
-    // Gallery Page - Creative showcase
-    $gallery_page = get_page_by_path('gallery');
-    if ($gallery_page) {
-        echo '<li><a href="' . get_permalink($gallery_page->ID) . '">🎨 Gallery</a></li>';
-    }
-
-    // About Page - Your story and journey
-    $about_page = get_page_by_path('about');
-    if ($about_page) {
-        echo '<li><a href="' . get_permalink($about_page->ID) . '">👤 About</a></li>';
-    }
-
-    // Contact Page - Business inquiries
-    $contact_page = get_page_by_path('contact');
-    if ($contact_page) {
-        echo '<li><a href="' . get_permalink($contact_page->ID) . '">Contact</a></li>';
-    }
-
-    echo '</ul>';
-}
-
-// ==========================================================================
-// GALLERY AUTO-UPLOAD SYSTEM - Dashboard to Gallery Integration
-// ==========================================================================
-
-// New handler for automatic gallery position assignment
-add_action('wp_ajax_upload_gallery_auto', 'handle_gallery_auto_upload');
-add_action('wp_ajax_nopriv_upload_gallery_auto', 'handle_gallery_auto_upload');
-
-function handle_gallery_auto_upload()
-{
-    // Security checks
-    if (!defined('DOING_AJAX') || !DOING_AJAX) {
-        wp_send_json_error('Not an AJAX request');
-        return;
-    }
-
-    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'gallery_upload_nonce')) {
-        wp_send_json_error('Security check failed');
-        return;
-    }
-
-    // Check file upload
-    if (!isset($_FILES['gallery_image']) || $_FILES['gallery_image']['error'] !== UPLOAD_ERR_OK) {
-        wp_send_json_error('No file uploaded or upload error');
-        return;
-    }
-
-    // Find next available gallery position (1-6)
-    $next_position = null;
-    for ($i = 1; $i <= 6; $i++) {
-        $existing_image = get_option("gallery_card_{$i}_image", '');
-        if (empty($existing_image)) {
-            $next_position = $i;
-            break;
-        }
-    }
-
-    if ($next_position === null) {
-        wp_send_json_error('Gallery is full! All 6 positions are occupied. Please manage existing images first.');
-        return;
-    }
-
-    $uploaded_file = $_FILES['gallery_image'];
-
-    // Validate file
-    $allowed_types = array('image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp');
-    if (!in_array($uploaded_file['type'], $allowed_types)) {
-        wp_send_json_error('Invalid file type. Please upload JPG, PNG, GIF, or WebP images.');
-        return;
-    }
-
-    // Validate size (max 5MB)
-    if ($uploaded_file['size'] > 5 * 1024 * 1024) {
-        wp_send_json_error('File too large. Maximum size is 5MB.');
-        return;
-    }
-
-    // Handle upload to WordPress
-    require_once(ABSPATH . 'wp-admin/includes/image.php');
-    require_once(ABSPATH . 'wp-admin/includes/file.php');
-    require_once(ABSPATH . 'wp-admin/includes/media.php');
-
-    $upload_overrides = array('test_form' => false);
-    $movefile = wp_handle_upload($uploaded_file, $upload_overrides);
-
-    if ($movefile && !isset($movefile['error'])) {
-        // Create attachment
-        $attachment = array(
-            'post_mime_type' => $movefile['type'],
-            'post_title' => 'Gallery Position ' . $next_position . ' - ' . sanitize_file_name($uploaded_file['name']),
-            'post_content' => 'Uploaded via Dashboard Gallery System',
-            'post_status' => 'inherit'
-        );
-
-        $attach_id = wp_insert_attachment($attachment, $movefile['file']);
-
-        if (!is_wp_error($attach_id)) {
-            $attach_data = wp_generate_attachment_metadata($attach_id, $movefile['file']);
-            wp_update_attachment_metadata($attach_id, $attach_data);
-
-            // Store in gallery position
-            update_option('gallery_card_' . $next_position . '_image', $movefile['url']);
-            update_option('gallery_card_' . $next_position . '_attachment_id', $attach_id);
-            update_option('gallery_card_' . $next_position . '_title', 'Creative Project ' . $next_position);
-            update_option('gallery_card_' . $next_position . '_description', 'Uploaded via dashboard - edit title and description in the gallery management.');
-            update_option('gallery_card_' . $next_position . '_updated', current_time('mysql'));
-
-            wp_send_json_success(array(
-                'url' => $movefile['url'],
-                'attachment_id' => $attach_id,
-                'position' => $next_position,
-                'message' => "Image uploaded to Gallery Position {$next_position}! View it on your Gallery page.",
-                'gallery_url' => site_url('/gallery/')
-            ));
-        } else {
-            wp_send_json_error('Failed to create attachment in Media Library');
-        }
-    } else {
-        $error = isset($movefile['error']) ? $movefile['error'] : 'Upload failed';
-        wp_send_json_error('Upload failed: ' . $error);
-    }
-}
-
-// ==========================================================================
-// AJAX HANDLERS FOR DASHBOARD DRAG & DROP FUNCTIONALITY
-// ==========================================================================
-
-// Handle AJAX file uploads for gallery dashboard
-add_action('wp_ajax_upload_gallery_image', 'handle_gallery_image_upload');
-add_action('wp_ajax_nopriv_upload_gallery_image', 'handle_gallery_image_upload');
-
-function handle_gallery_image_upload()
-{
-    // Enable detailed error logging
-    error_log('Gallery image upload started');
-
-    // Check if this is a valid AJAX request
-    if (!defined('DOING_AJAX') || !DOING_AJAX) {
-        error_log('Not an AJAX request');
-        wp_send_json_error('Not an AJAX request');
-        return;
-    }
-
-    // Verify nonce for security
-    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'gallery_upload_nonce')) {
-        error_log('Security check failed - nonce invalid');
-        wp_send_json_error('Security check failed');
-        return;
-    }
-
-    // Check if file was uploaded
-    if (!isset($_FILES['gallery_image']) || $_FILES['gallery_image']['error'] !== UPLOAD_ERR_OK) {
-        $error = $_FILES['gallery_image']['error'] ?? 'No file provided';
-        error_log('File upload error: ' . $error);
-        wp_send_json_error('No file uploaded or upload error: ' . $error);
-        return;
-    }
-
-    $card_id = sanitize_text_field($_POST['card_id'] ?? '');
-    if (empty($card_id)) {
-        error_log('Card ID missing');
-        wp_send_json_error('Card ID is required');
-        return;
-    }
-
-    $uploaded_file = $_FILES['gallery_image'];
-
-    // Validate file type
-    $allowed_types = array('image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp');
-    $file_type = $uploaded_file['type'];
-    if (!in_array($file_type, $allowed_types)) {
-        error_log('Invalid file type: ' . $file_type);
-        wp_send_json_error('Invalid file type. Please upload JPG, PNG, GIF, or WebP images.');
-        return;
-    }
-
-    // Validate file size (max 5MB)
-    $max_size = 5 * 1024 * 1024; // 5MB
-    if ($uploaded_file['size'] > $max_size) {
-        error_log('File too large: ' . $uploaded_file['size']);
-        wp_send_json_error('File too large. Maximum size is 5MB.');
-        return;
-    }
-
-    // Use WordPress media handling
-    require_once(ABSPATH . 'wp-admin/includes/image.php');
-    require_once(ABSPATH . 'wp-admin/includes/file.php');
-    require_once(ABSPATH . 'wp-admin/includes/media.php');
-
-    // Handle the upload
-    $upload_overrides = array(
-        'test_form' => false
-    );
-
-    $movefile = wp_handle_upload($uploaded_file, $upload_overrides);
-
-    if ($movefile && !isset($movefile['error'])) {
-        // Create attachment
-        $attachment = array(
-            'post_mime_type' => $movefile['type'],
-            'post_title' => 'Gallery Card ' . $card_id,
-            'post_content' => '',
-            'post_status' => 'inherit'
-        );
-
-        $attach_id = wp_insert_attachment($attachment, $movefile['file']);
-
-        if (!is_wp_error($attach_id)) {
-            $attach_data = wp_generate_attachment_metadata($attach_id, $movefile['file']);
-            wp_update_attachment_metadata($attach_id, $attach_data);
-
-            // Store card metadata
-            update_option('gallery_card_' . $card_id . '_image', $movefile['url']);
-            update_option('gallery_card_' . $card_id . '_attachment_id', $attach_id);
-            update_option('gallery_card_' . $card_id . '_updated', current_time('mysql'));
-
-            error_log('Upload successful for card: ' . $card_id);
-
-            wp_send_json_success(array(
-                'url' => $movefile['url'],
-                'attachment_id' => $attach_id,
-                'card_id' => $card_id,
-                'message' => 'Upload successful!'
-            ));
-        } else {
-            error_log('Attachment creation failed: ' . $attach_id->get_error_message());
-            wp_send_json_error('Failed to create attachment: ' . $attach_id->get_error_message());
-        }
-    } else {
-        $error_message = isset($movefile['error']) ? $movefile['error'] : 'Unknown upload error';
-        error_log('Upload failed: ' . $error_message);
-        wp_send_json_error('Upload failed: ' . $error_message);
-    }
-}
-
-// Handle AJAX card data updates
-add_action('wp_ajax_update_card_data', 'handle_card_data_update');
-add_action('wp_ajax_nopriv_update_card_data', 'handle_card_data_update');
-
-function handle_card_data_update()
-{
-    // Verify nonce for security
-    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'gallery_upload_nonce')) {
-        wp_send_json_error('Security check failed');
-        return;
-    }
-
-    $card_id = sanitize_text_field($_POST['card_id'] ?? '');
-    $title = sanitize_text_field($_POST['title'] ?? '');
-    $description = sanitize_textarea_field($_POST['description'] ?? '');
-
-    if (empty($card_id)) {
-        wp_send_json_error('Card ID is required');
-        return;
-    }
-
-    update_option('gallery_card_' . $card_id . '_title', $title);
-    update_option('gallery_card_' . $card_id . '_description', $description);
-    update_option('gallery_card_' . $card_id . '_updated', current_time('mysql'));
-
-    wp_send_json_success(array(
-        'card_id' => $card_id,
-        'title' => $title,
-        'description' => $description,
-        'updated' => current_time('mysql')
-    ));
-}
 
 // ===== PROFESSIONAL SEO OPTIMIZATION =====
 
