@@ -1041,7 +1041,8 @@ a:hover {
     left: 16px;
     right: 16px;
     max-width: none;
-    bottom: 84px;
+    bottom: 16px;
+    z-index: 1050;
   }
 }
 
