@@ -79,10 +79,9 @@ add_action('init', function () {
         // Log form submission attempt
         error_log('Contact form submitted by: ' . $name . ' (' . $email . ') from IP: ' . $ip);
 
-        // Multiple recipients - both cPanel webmail AND confirmed contact address
+        // Send the contact enquiry to the primary business inbox.
         $recipients = array(
-            get_option('admin_email'),  // Primary site admin inbox
-            'stuart@1976.london'        // Confirmed contact address
+            'stuart@1976.london'
         );
 
         $mail_subject = ($subject ? $subject . ' - ' : '') . '1976 London Contact Form';
@@ -393,56 +392,6 @@ function creative_theme_scripts()
         );
     }
 
-    // Websites page styles
-    if (is_page('websites') || is_page_template('page-websites.php')) {
-        wp_enqueue_style(
-            '1976london-websites',
-            get_template_directory_uri() . '/assets/css/pages/websites.css',
-            array('1976london-components'),
-            $version
-        );
-    }
-
-    // Gallery page styles  
-    if (is_page('gallery') || is_page_template('page-gallery.php')) {
-        wp_enqueue_style(
-            '1976london-gallery',
-            get_template_directory_uri() . '/assets/css/pages/gallery.css',
-            array('1976london-components'),
-            $version
-        );
-    }
-
-    // Contact page styles
-    if (is_page('contact') || is_page_template('page-contact.php')) {
-        wp_enqueue_style(
-            '1976london-contact',
-            get_template_directory_uri() . '/assets/css/pages/contact.css',
-            array('1976london-components'),
-            $version
-        );
-    }
-
-    // Portfolio page styles
-    if (is_page('portfolio') || is_page_template('page-portfolio.php')) {
-        wp_enqueue_style(
-            '1976london-portfolio',
-            get_template_directory_uri() . '/assets/css/pages/portfolio.css',
-            array('1976london-components'),
-            $version
-        );
-    }
-
-    // Text page styles
-    if (is_page('text') || is_page_template('page-text.php')) {
-        wp_enqueue_style(
-            '1976london-text',
-            get_template_directory_uri() . '/assets/css/pages/text.css',
-            array('1976london-components'),
-            $version
-        );
-    }
-
     // About page styles
     if (is_page('about') || is_page_template('page-about.php')) {
         wp_enqueue_style(
@@ -453,11 +402,11 @@ function creative_theme_scripts()
         );
     }
 
-    // Offers page styles
-    if (is_page('offers') || is_page_template('page-offers.php')) {
+    // Contact page styles
+    if (is_page('contact') || is_page_template('page-contact.php')) {
         wp_enqueue_style(
-            '1976london-offers',
-            get_template_directory_uri() . '/assets/css/pages/offers.css',
+            '1976london-contact',
+            get_template_directory_uri() . '/assets/css/pages/contact.css',
             array('1976london-components'),
             $version
         );
